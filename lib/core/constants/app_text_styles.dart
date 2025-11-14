@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:speech_to_text/ui/app_colors.dart';
+import 'package:speech_to_text/core/constants/app_colors.dart';
 
 class AppTextStyles {
   static const TextStyle heading = TextStyle(

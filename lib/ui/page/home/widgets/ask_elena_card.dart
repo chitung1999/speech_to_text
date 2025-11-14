@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:speech_to_text/ui/app_colors.dart';
-import 'package:speech_to_text/ui/app_text_styles.dart';
+import 'package:speech_to_text/core/constants/app_colors.dart';
+import 'package:speech_to_text/core/constants/app_text_styles.dart';
 
 class AskElenaCard extends StatelessWidget {
   const AskElenaCard({super.key});

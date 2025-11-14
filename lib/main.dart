@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:speech_to_text/ui/page/home/home.dart';
+import 'package:speech_to_text/ui/route/route.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,17 +10,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: AppRouter.router,
       debugShowCheckedModeBanner: false,
-      title: 'Flutter',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
-      ),
-      initialRoute: '/HomePage',
-      routes: {
-        '/HomePage': (context) => const HomePage(),
-      },
     );
   }
 }
