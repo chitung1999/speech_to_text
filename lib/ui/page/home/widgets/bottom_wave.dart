@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class BottomWave extends StatelessWidget {
   const BottomWave({super.key});
@@ -15,8 +16,8 @@ class BottomWave extends StatelessWidget {
             top: 23,
             left: 0,
             right: 0,
-            child: Image.network(
-              "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/svbrKIT7w1/8iw1ai3r_expires_30_days.png",
+            child: SvgPicture.asset(
+              "assets/icon/toolbar.svg",
               fit: BoxFit.fill,
               height: 98,
             ),
@@ -25,8 +26,8 @@ class BottomWave extends StatelessWidget {
             top: 0,
             left: 148,
             right: 148,
-            child: Image.network(
-              "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/svbrKIT7w1/9ty43css_expires_30_days.png",
+            child: Image.asset(
+              "assets/icon/mirco.png",
               fit: BoxFit.fill,
               height: 91,
             ),

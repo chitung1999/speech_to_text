@@ -36,8 +36,7 @@ class AskElenaCard extends StatelessWidget {
                 width: double.infinity,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(
-                        "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/svbrKIT7w1/21px6vvx_expires_30_days.png"),
+                    image: AssetImage("assets/icon/rounded_rectangle.png"),
                     fit: BoxFit.cover,
                   ),
                 ),
