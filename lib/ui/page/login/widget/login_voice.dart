@@ -25,7 +25,7 @@ class _LoginVoiceState extends State<LoginVoice> {
     });
     await Future.delayed(const Duration(seconds: 1));
     if(mounted) {
-      context.replace(RouteName.home);
+      context.replaceNamed(RouteName.home);
     }
   }
 

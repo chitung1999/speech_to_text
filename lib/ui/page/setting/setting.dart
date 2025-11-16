@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
 import 'package:speech_to_text/ui/page/bg/bg.dart';
+import 'package:speech_to_text/ui/route/route_name.dart';
 import 'package:speech_to_text/ui/widget/text_button_app.dart';
 
 class SettingPage extends StatefulWidget {
@@ -37,7 +39,10 @@ class _SettingPageState extends State<SettingPage> {
                 borderColor: AppColors.border,
                 borderWidth: 2,
                 radius: 12,
-                onPressed: () {},
+                onPressed: () {
+                  context.pop();
+                  context.replaceNamed(RouteName.login);
+                },
                 textStyle: TextStyle(color: AppColors.text),
               ),
             ]

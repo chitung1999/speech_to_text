@@ -25,7 +25,7 @@ class LoginAccount extends StatelessWidget {
 
       await Future.delayed(const Duration(seconds: 1));
       if(context.mounted) {
-        context.replace(RouteName.home);
+        context.replaceNamed(RouteName.home);
       }
     }
 

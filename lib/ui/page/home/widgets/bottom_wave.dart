@@ -17,7 +17,7 @@ class BottomWave extends StatelessWidget {
             left: 0,
             right: 0,
             child: SvgPicture.asset(
-              "assets/icon/toolbar.svg",
+              "assets/icon/listening.svg",
               fit: BoxFit.fill,
               height: 98,
             ),
