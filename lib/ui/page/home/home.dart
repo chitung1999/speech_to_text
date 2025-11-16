@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:speech_to_text/ui/page/bg/bg.dart';
 import 'package:speech_to_text/ui/page/home/widgets/ask_elena_card.dart';
-import 'package:speech_to_text/ui/page/home/widgets/bottom_wave.dart';
 import 'package:speech_to_text/ui/page/home/widgets/suggestion_chips.dart';
+import 'package:speech_to_text/ui/route/route_name.dart';
+import 'package:speech_to_text/ui/widget/avatar.dart';
+import '../../widget/bottom_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,33 +15,73 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String message = 'Say something...';
+
+  void _onRecording() {
+    setState(() {
+      message = 'Listening...';
+    });
+  }
+  void _onEndRecording() {
+    setState(() {
+      message = 'Hi, I am Elena. How can I help you?';
+    });
+  }
+
+  void _onSuggested (String label) {
+    setState(() {
+      message = label;
+    });
+  }
+
+  void _onShowSetting() {
+    context.pushNamed(RouteName.setting);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 50),
-              child: Column(
-                children: [
-                  AskElenaCard(),
-                  SuggestionChips(),
-                  SvgPicture.asset(
-                    'assets/icon/home.svg',
-                    width: 300,
-                    height: 300,
-                    // colorFilter: const ColorFilter.mode(Colors.blue, BlendMode.srcIn), // tuỳ chọn
+      body: BackgroundPage(
+        child: Center(
+          child: Column(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: Column(
+                    spacing: 20,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            "Hi Lan",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            )
+                          ),
+                          Avatar(size: 30, isShowName: false)
+                        ],
+                      ),
+                      AskElenaCard(message: message),
+                      Expanded(
+                        child: SuggestionChips(onTap: _onSuggested)
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            )
+              BottomBar(
+                isLoginScreen: false,
+                onStartRecording: _onRecording,
+                onEndRecording: _onEndRecording,
+                onShowSetting: _onShowSetting,
+              )
+            ]
           ),
-          BottomWave(),
-        ],
+        )
       )
     );
   }

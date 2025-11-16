@@ -3,41 +3,12 @@ import 'package:speech_to_text/core/constants/app_colors.dart';
 import 'package:speech_to_text/core/constants/app_text_styles.dart';
 
 class SuggestionChips extends StatelessWidget {
-  const SuggestionChips({super.key});
+  const SuggestionChips({super.key, required this.onTap});
+  final Function(String) onTap;
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(23, 0, 21, 0),
-      child: Wrap(
-        spacing: 10.0, // gap between adjacent chips
-        runSpacing: 28.0, // gap between lines
-        children: const <Widget>[
-          _SuggestionChip(label: "Sing me a song"),
-          _SuggestionChip(label: "Restaurants nearby"),
-          _SuggestionChip(label: "Play a game"),
-          _SuggestionChip(label: "Sports news"),
-          _SuggestionChip(label: "Random fun"),
-          _SuggestionChip(label: "Today’s Weather"),
-          _SuggestionChip(label: "Play a game"),
-          _SuggestionChip(label: "Sports news"),
-          _SuggestionChip(label: "Random fun"),
-          _SuggestionChip(label: "Today’s Weather"),
-        ],
-      ),
-    );
-  }
-}
-
-class _SuggestionChip extends StatelessWidget {
-  final String label;
-
-  const _SuggestionChip({required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => debugPrint('Chip tapped: $label'),
+  Widget _suggestionChip (String label) {
+    return GestureDetector(
+      onTap: () => onTap(label),
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
@@ -51,6 +22,28 @@ class _SuggestionChip extends StatelessWidget {
           label,
           style: AppTextStyles.chip,
         ),
+      ),
+    );
+}
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Wrap(
+        spacing: 10.0,
+        runSpacing: 10.0,
+        children: [
+          _suggestionChip("Sing me a song"),
+          _suggestionChip("Restaurants nearby"),
+          _suggestionChip("Play a game"),
+          _suggestionChip("Sports news"),
+          _suggestionChip("Random fun"),
+          _suggestionChip("Today’s Weather"),
+          _suggestionChip("Play a game"),
+          _suggestionChip("Sports news"),
+          _suggestionChip("Random fun"),
+          _suggestionChip("Today’s Weather"),
+        ],
       ),
     );
   }
