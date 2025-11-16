@@ -10,4 +10,8 @@ abstract class RouteName {
   static const String home = '/home';
   // Input:
   // Output:
+
+  static const String setting = '/setting';
+  // Input:
+  // Output:
 }
