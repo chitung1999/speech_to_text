@@ -14,8 +14,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void _onRecording() {}
-  void _onEndRecording() {}
+  bool isRecording = false;
+  void _onRecording() {
+    setState(() {
+      isRecording = true;
+    });
+  }
+  void _onEndRecording() {
+    setState(() {
+      isRecording = false;
+    });
+  }
 
   void _onShowSetting() {
     context.pushNamed(RouteName.setting);
@@ -29,15 +38,14 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               Expanded(
-                child: SingleChildScrollView(
-                  // padding: EdgeInsets.symmetric(horizontal: 0, vertical: 50),
-                  child: Column(
-                    children: [
-                      AskElenaCard(),
-                      SuggestionChips(),
-                    ],
-                  ),
-                )
+                child: Column(
+                  children: [
+                    AskElenaCard(isRecording: isRecording),
+                    SingleChildScrollView(
+                      child: SuggestionChips()
+                    ),
+                  ],
+                ),
               ),
               BottomBar(
                 isLoginScreen: false,
