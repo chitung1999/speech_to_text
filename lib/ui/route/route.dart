@@ -8,7 +8,7 @@ import 'package:speech_to_text/ui/route/route_name.dart';
 abstract class AppRouter {
   static final GoRouter router = GoRouter(
     redirect: (context, state) {return null;},
-    // initialLocation: RouteName.setting,
+    initialLocation: RouteName.home,
     debugLogDiagnostics: kDebugMode,
     routes: [
       GoRoute(
