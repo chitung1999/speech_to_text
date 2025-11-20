@@ -31,6 +31,8 @@ class _BottomBarState extends State<BottomBar> {
     return Stack(
       children: [
         Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             SizedBox(height: 40),
             SvgPicture.asset(

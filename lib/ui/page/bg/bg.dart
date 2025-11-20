@@ -19,9 +19,12 @@ class BackgroundPage extends StatelessWidget {
       ),
       width: double.infinity,
       height: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: child,
+      child: SafeArea(
+        bottom: false,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: child,
+        ),
       ),
     );
   }

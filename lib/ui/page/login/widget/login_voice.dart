@@ -93,7 +93,7 @@ class _LoginVoiceState extends State<LoginVoice> {
                   ),
                   TextButtonApp.normal(
                     title: 'Sign Up',
-                    onPressed: () {},
+                    onPressed: () => context.pushNamed(RouteName.signUp),
                     textStyle: TextStyle(color: AppColors.text),
                   )
                 ],

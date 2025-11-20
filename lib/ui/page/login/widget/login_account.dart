@@ -30,7 +30,7 @@ class LoginAccount extends StatelessWidget {
     }
 
     return SingleChildScrollView(
-      padding: EdgeInsets.only(top: 70, bottom: 30),
+      padding: EdgeInsets.symmetric(vertical: 30),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         spacing: 30,
@@ -94,7 +94,7 @@ class LoginAccount extends StatelessWidget {
           ),
           TextButtonApp.normal(
             title: 'Forgot password?',
-            onPressed: () {},
+            onPressed: () => context.pushNamed(RouteName.forgotPassword),
             textStyle: TextStyle(color: AppColors.text),
           ),
           TextButtonApp.normal(
@@ -112,7 +112,7 @@ class LoginAccount extends StatelessWidget {
               ),
               TextButtonApp.normal(
                 title: 'Sign Up',
-                onPressed: () {},
+                onPressed: () => context.pushNamed(RouteName.signUp),
                 textStyle: TextStyle(color: AppColors.text),
               )
             ],

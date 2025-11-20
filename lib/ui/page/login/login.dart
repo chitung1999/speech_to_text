@@ -19,9 +19,10 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BackgroundPage(
-        child: _isLoginVoice
+    return BackgroundPage(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: _isLoginVoice
             ? LoginVoice(onChangedLoginType: _onChangedLoginType)
             : LoginAccount(onChangedLoginType: _onChangedLoginType),
       ),
