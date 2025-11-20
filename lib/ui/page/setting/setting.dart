@@ -1,6 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
+import 'package:speech_to_text/core/enums/language.dart';
+import 'package:speech_to_text/presentation/generated/locales/locale_keys.g.dart';
 import 'package:speech_to_text/ui/bottomsheet/setting_language/setting_language.dart';
 import 'package:speech_to_text/ui/page/bg/bg.dart';
 import 'package:speech_to_text/ui/page/setting/widget/item_setting.dart';
@@ -17,7 +20,16 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  String _currentLanguage = 'English';
+  Language _currentLanguage = Language.en;
+
+  String _getStrLanguage(Language lang) {
+    switch (lang) {
+      case Language.en:
+        return LocaleKeys.setting_en.tr();
+      case Language.vi:
+        return LocaleKeys.setting_vn.tr();
+    }
+  }
 
   void _onSettingLanguage() {
     showModalBottomSheet(
@@ -64,7 +76,12 @@ class _SettingPageState extends State<SettingPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   spacing: 20,
                   children: [
-                    ItemSetting(icon: Icons.language, title: 'Language', value: _currentLanguage, onTap: _onSettingLanguage),
+                    ItemSetting(
+                      icon: Icons.language,
+                      title: LocaleKeys.setting_language.tr(),
+                      value: _getStrLanguage(_currentLanguage),
+                      onTap: _onSettingLanguage
+                    ),
                     ItemSetting(icon: Icons.lock_open, title: 'Password', onTap: (){}),
                   ],
                 ),
