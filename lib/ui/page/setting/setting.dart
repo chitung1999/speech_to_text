@@ -5,6 +5,7 @@ import 'package:speech_to_text/core/constants/app_colors.dart';
 import 'package:speech_to_text/core/enums/language.dart';
 import 'package:speech_to_text/presentation/generated/locales/locale_keys.g.dart';
 import 'package:speech_to_text/ui/bottomsheet/setting_language/setting_language.dart';
+import 'package:speech_to_text/ui/bottomsheet/setting_password/setting_password.dart';
 import 'package:speech_to_text/ui/page/bg/bg.dart';
 import 'package:speech_to_text/ui/page/setting/widget/item_setting.dart';
 import 'package:speech_to_text/ui/route/route_name.dart';
@@ -46,6 +47,16 @@ class _SettingPageState extends State<SettingPage> {
     );
   }
 
+  void _onSettingPassword() {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        builder: (context) {
+          return SettingPassword();
+        }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BackgroundPage(
@@ -82,7 +93,7 @@ class _SettingPageState extends State<SettingPage> {
                       value: _getStrLanguage(_currentLanguage),
                       onTap: _onSettingLanguage
                     ),
-                    ItemSetting(icon: Icons.lock_open, title: 'Password', onTap: (){}),
+                    ItemSetting(icon: Icons.lock_open, title: 'Password', onTap: _onSettingPassword),
                   ],
                 ),
               ),

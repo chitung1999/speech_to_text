@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
+import 'package:speech_to_text/ui/bottomsheet/forgot_password/forgot_password.dart';
 import 'package:speech_to_text/ui/route/route_name.dart';
 import 'package:speech_to_text/ui/widget/circular_progress.dart';
 import 'package:speech_to_text/ui/widget/text_button_app.dart';
@@ -94,7 +95,13 @@ class LoginAccount extends StatelessWidget {
           ),
           TextButtonApp.normal(
             title: 'Forgot password?',
-            onPressed: () => context.pushNamed(RouteName.forgotPassword),
+            onPressed: () => showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (context) {
+                  return ForgotPassword();
+                }
+            ),
             textStyle: TextStyle(color: AppColors.text),
           ),
           TextButtonApp.normal(

@@ -2,8 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/ui/route/route.dart';
 import 'package:speech_to_text/presentation/generated/locales/codegen_loader.g.dart';
+import 'domain/di/di.dart';
 
-void main() {
+Future<void> main() async {
+  await setupLocator();
   runApp(
       EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('vi')],

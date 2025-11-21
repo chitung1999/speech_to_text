@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
+import 'package:speech_to_text/domain/di/di.dart';
+import 'package:speech_to_text/domain/models/result/result.dart';
+import 'package:speech_to_text/domain/repositories/remote/remote_data.dart';
 import 'package:speech_to_text/ui/route/route_name.dart';
 import 'package:speech_to_text/ui/widget/bottom_bar.dart';
 import 'package:speech_to_text/ui/widget/text_button_app.dart';
@@ -17,13 +20,17 @@ class LoginVoice extends StatefulWidget {
 }
 
 class _LoginVoiceState extends State<LoginVoice> {
+  final _remoteData = getIt<RemoteData>();
   String _strPassword = 'Speak your password';
 
   Future<void> _onLogin() async {
     setState(() {
       _strPassword = '**************';
     });
-    await Future.delayed(const Duration(seconds: 1));
+
+    final Result<dynamic> result = await _remoteData.getUser('IJCx2pwsCTb6pkyb6yasig==');
+    print(result.data);
+
     if(mounted) {
       context.replaceNamed(RouteName.home);
     }

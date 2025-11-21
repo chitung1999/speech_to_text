@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
-import 'package:speech_to_text/ui/page/forgot_password/forgot_password.dart';
 import 'package:speech_to_text/ui/page/home/home.dart';
 import 'package:speech_to_text/ui/page/login/login.dart';
 import 'package:speech_to_text/ui/page/setting/setting.dart';
@@ -32,11 +31,6 @@ abstract class AppRouter {
         name: RouteName.signUp,
         path: RouteName.signUp,
         pageBuilder: (context, state) => const NoTransitionPage(child: SignUpPage()),
-      ),
-      GoRoute(
-        name: RouteName.forgotPassword,
-        path: RouteName.forgotPassword,
-        pageBuilder: (context, state) => const NoTransitionPage(child: ForgotPasswordPage()),
       ),
     ],
   );
