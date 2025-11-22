@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
 import 'package:speech_to_text/core/enums/language.dart';
+import 'package:speech_to_text/domain/di/di.dart';
+import 'package:speech_to_text/domain/repositories/local/shared_preference.dart';
 import 'package:speech_to_text/presentation/generated/locales/locale_keys.g.dart';
 
 class SettingLanguage extends StatelessWidget {
@@ -22,11 +24,16 @@ class SettingLanguage extends StatelessWidget {
       }
     }
 
-    Widget item (Language lang) {
+    Widget item (Language language) {
       return InkWell(
         onTap: () {
-          onSelected(lang);
-          context.setLocale(Locale(lang == Language.en ? 'en' : 'vi'));
+          onSelected(language);
+          String strLanguage = language == Language.en ? 'en' : 'vi';
+          context.setLocale(Locale(strLanguage));
+
+          final prefs = getIt<SharedPreferencesApp>();
+          prefs.setLanguage(strLanguage);
+
           context.pop();
         },
         splashColor: Colors.transparent,
@@ -35,13 +42,13 @@ class SettingLanguage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              getStrLanguage(lang),
+              getStrLanguage(language),
               style: TextStyle(
                 color: AppColors.textBottomSheet,
                 fontSize: 18,
               ),
             ),
-            if (lang == currentLanguage)
+            if (language == currentLanguage)
               Icon(Icons.check, color: AppColors.textBottomSheet)
           ],
         ),

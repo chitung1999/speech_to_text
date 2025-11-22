@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
+import 'package:speech_to_text/domain/di/di.dart';
+import 'package:speech_to_text/domain/repositories/local/shared_preference.dart';
 import 'package:speech_to_text/ui/bottomsheet/forgot_password/forgot_password.dart';
 import 'package:speech_to_text/ui/route/route_name.dart';
 import 'package:speech_to_text/ui/widget/circular_progress.dart';
@@ -26,6 +28,8 @@ class LoginAccount extends StatelessWidget {
 
       await Future.delayed(const Duration(seconds: 1));
       if(context.mounted) {
+        final prefs = getIt<SharedPreferencesApp>();
+        prefs.setLoginStatus(true);
         context.replaceNamed(RouteName.home);
       }
     }

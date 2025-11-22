@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
 import 'package:speech_to_text/domain/di/di.dart';
 import 'package:speech_to_text/domain/models/result/result.dart';
+import 'package:speech_to_text/domain/repositories/local/shared_preference.dart';
 import 'package:speech_to_text/domain/repositories/remote/remote_data.dart';
 import 'package:speech_to_text/ui/route/route_name.dart';
 import 'package:speech_to_text/ui/widget/bottom_bar.dart';
@@ -28,10 +29,14 @@ class _LoginVoiceState extends State<LoginVoice> {
       _strPassword = '**************';
     });
 
-    final Result<dynamic> result = await _remoteData.getUser('IJCx2pwsCTb6pkyb6yasig==');
-    print(result.data);
+    // final Result<dynamic> result = await _remoteData.getUser('IJCx2pwsCTb6pkyb6yasig==');
+    // print(result.data);
+
+    await Future.delayed(const Duration(seconds: 1));
 
     if(mounted) {
+      final prefs = getIt<SharedPreferencesApp>();
+      prefs.setLoginStatus(true);
       context.replaceNamed(RouteName.home);
     }
   }

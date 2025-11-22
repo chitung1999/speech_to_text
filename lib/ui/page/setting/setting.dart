@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
 import 'package:speech_to_text/core/enums/language.dart';
+import 'package:speech_to_text/domain/di/di.dart';
+import 'package:speech_to_text/domain/repositories/local/shared_preference.dart';
 import 'package:speech_to_text/presentation/generated/locales/locale_keys.g.dart';
 import 'package:speech_to_text/ui/bottomsheet/setting_language/setting_language.dart';
 import 'package:speech_to_text/ui/bottomsheet/setting_password/setting_password.dart';
@@ -108,6 +110,8 @@ class _SettingPageState extends State<SettingPage> {
               onPressed: () {
                 context.pop();
                 context.replaceNamed(RouteName.login);
+                final prefs = getIt<SharedPreferencesApp>();
+                prefs.setLoginStatus(false);
               },
               textStyle: TextStyle(color: AppColors.text),
             ),

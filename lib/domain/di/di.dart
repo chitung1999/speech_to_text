@@ -38,5 +38,5 @@ Future<void> setupLocator() async {
   );
 
   // Initialize the generated dependencies
-  getIt.init();
+  await getIt.init();
 }
