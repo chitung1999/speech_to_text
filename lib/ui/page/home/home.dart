@@ -40,48 +40,47 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BackgroundPage(
-        child: Center(
-          child: Column(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 50),
-                  child: Column(
-                    spacing: 20,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
+    return BackgroundPage(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Column(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Column(
+                  spacing: 20,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
                             "Hi Lan",
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             )
-                          ),
-                          Avatar(size: 30, isShowName: false)
-                        ],
-                      ),
-                      AskElenaCard(message: message),
-                      Expanded(
+                        ),
+                        Avatar(size: 30, isShowName: false)
+                      ],
+                    ),
+                    AskElenaCard(message: message),
+                    Expanded(
                         child: SuggestionChips(onTap: _onSuggested)
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              BottomBar(
-                isLoginScreen: false,
-                onStartRecording: _onRecording,
-                onEndRecording: _onEndRecording,
-                onShowSetting: _onShowSetting,
-              )
-            ]
-          ),
-        )
+            ),
+            BottomBar(
+              isLoginScreen: false,
+              onStartRecording: _onRecording,
+              onEndRecording: _onEndRecording,
+              onShowSetting: _onShowSetting,
+            )
+          ]
+        ),
       )
     );
   }

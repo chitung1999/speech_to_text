@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
+import 'package:speech_to_text/domain/di/di.dart';
+import 'package:speech_to_text/domain/repositories/local/shared_preference.dart';
+import 'package:speech_to_text/ui/bottomsheet/forgot_password/forgot_password.dart';
 import 'package:speech_to_text/ui/route/route_name.dart';
 import 'package:speech_to_text/ui/widget/circular_progress.dart';
 import 'package:speech_to_text/ui/widget/text_button_app.dart';
@@ -25,12 +28,14 @@ class LoginAccount extends StatelessWidget {
 
       await Future.delayed(const Duration(seconds: 1));
       if(context.mounted) {
+        final prefs = getIt<SharedPreferencesApp>();
+        prefs.setLoginStatus(true);
         context.replaceNamed(RouteName.home);
       }
     }
 
     return SingleChildScrollView(
-      padding: EdgeInsets.only(top: 70, bottom: 30),
+      padding: EdgeInsets.symmetric(vertical: 30),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         spacing: 30,
@@ -94,7 +99,13 @@ class LoginAccount extends StatelessWidget {
           ),
           TextButtonApp.normal(
             title: 'Forgot password?',
-            onPressed: () {},
+            onPressed: () => showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (context) {
+                  return ForgotPassword();
+                }
+            ),
             textStyle: TextStyle(color: AppColors.text),
           ),
           TextButtonApp.normal(
@@ -112,7 +123,7 @@ class LoginAccount extends StatelessWidget {
               ),
               TextButtonApp.normal(
                 title: 'Sign Up',
-                onPressed: () {},
+                onPressed: () => context.pushNamed(RouteName.signUp),
                 textStyle: TextStyle(color: AppColors.text),
               )
             ],

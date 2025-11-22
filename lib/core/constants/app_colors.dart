@@ -9,4 +9,5 @@ abstract class AppColors {
   static const Color chipBorder = Color(0xFF393568);
   static const Color iconLight = Color(0xFFA4A0CB);
   static const Color border = Color(0xFF3A3568);
+  static const Color textBottomSheet = Color(0xFF151529);
 }

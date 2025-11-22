@@ -14,4 +14,12 @@ abstract class RouteName {
   static const String setting = '/setting';
   // Input:
   // Output:
+
+  static const String signUp = '/sign-up';
+  // Input:
+  // Output:
+
+  static const String forgotPassword = '/forgot-password';
+  // Input:
+  // Output:
 }

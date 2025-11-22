@@ -38,7 +38,7 @@ abstract class ToastMessage {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 16),
               decoration: BoxDecoration(
-                color: Colors.white12,
+                color: Colors.black87,
                 borderRadius: BorderRadius.circular(32),
               ),
               child: Row(

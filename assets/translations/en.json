@@ -1,0 +1,10 @@
+{
+  "common": {
+    "title": "Project"
+  },
+  "setting": {
+    "language": "Language",
+    "en": "English",
+    "vn": "Vietnamese"
+  }
+}
