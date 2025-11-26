@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:speech_to_text/core/enums/status.dart';
+import 'package:speech_to_text/core/function/record.dart';
+import 'package:speech_to_text/domain/di/di.dart';
+import 'package:speech_to_text/domain/models/record/record_response.dart';
+import 'package:speech_to_text/domain/models/result/result.dart';
+import 'package:speech_to_text/domain/repositories/remote/remote_data.dart';
 import 'package:speech_to_text/ui/page/bg/bg.dart';
 import 'package:speech_to_text/ui/page/home/widgets/ask_elena_card.dart';
 import 'package:speech_to_text/ui/page/home/widgets/suggestion_chips.dart';
 import 'package:speech_to_text/ui/route/route_name.dart';
 import 'package:speech_to_text/ui/widget/avatar.dart';
-import '../../widget/bottom_bar.dart';
+import 'package:speech_to_text/ui/widget/bottom_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,14 +23,23 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String message = 'Say something...';
 
-  void _onRecording() {
+  Future<void> _onRecording() async {
     setState(() {
       message = 'Listening...';
     });
+
+    await RecordApp.startRecording();
   }
-  void _onEndRecording() {
+  Future<void> _onEndRecording() async {
+    await RecordApp.endRecording();
+
+    final remoteData = getIt<RemoteData>();
+    final Result<RecordResponse> result = await remoteData.onSpeechToText();
+
     setState(() {
-      message = 'Hi, I am Elena. How can I help you?';
+      message = result.status == Status.success
+        ? result.data!.text
+        : 'Say something...';
     });
   }
 
