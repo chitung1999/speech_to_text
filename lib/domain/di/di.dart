@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:speech_to_text/core/constants/network.dart';
 import 'package:speech_to_text/domain/di/di.config.dart';
@@ -25,7 +23,7 @@ Future<void> setupLocator() async {
     ..headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Basic ${base64Encode(utf8.encode(NetworkConstants.basicAuth))}',
+      // 'Authorization': 'Basic ${base64Encode(utf8.encode(NetworkConstants.basicAuth))}',
     }
     ..followRedirects = false;
 

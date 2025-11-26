@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
 import 'package:speech_to_text/domain/di/di.dart';
+import 'package:speech_to_text/domain/models/login/login_response.dart';
+import 'package:speech_to_text/domain/models/result/result.dart';
 import 'package:speech_to_text/domain/repositories/local/shared_preference.dart';
+import 'package:speech_to_text/domain/repositories/remote/remote_data.dart';
 import 'package:speech_to_text/ui/bottomsheet/forgot_password/forgot_password.dart';
 import 'package:speech_to_text/ui/route/route_name.dart';
 import 'package:speech_to_text/ui/widget/circular_progress.dart';
@@ -26,7 +29,9 @@ class LoginAccount extends StatelessWidget {
         return;
       }
 
-      await Future.delayed(const Duration(seconds: 1));
+      final remoteData = getIt<RemoteData>();
+      final Result<LoginResponse> result = await remoteData.onLogin(usernameController.text, passwordController.text);
+
       if(context.mounted) {
         final prefs = getIt<SharedPreferencesApp>();
         prefs.setLoginStatus(true);

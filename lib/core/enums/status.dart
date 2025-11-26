@@ -1,5 +1,4 @@
 enum Status {
   success,
   error,
-
 }

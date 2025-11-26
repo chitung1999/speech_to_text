@@ -15,7 +15,7 @@ class SharedPreferencesApp {
 
   SharedPreferencesApp({required this.sharedPreferences});
 
-  /// return [true] if the user is logged in, otherwise [false]
+  /// return [true] if the record is logged in, otherwise [false]
   Future<bool> setLoginStatus(bool isLoggedIn) =>
       sharedPreferences.setBool('isLoggedIn', isLoggedIn);
   Future<bool> getLoginStatus() async =>
