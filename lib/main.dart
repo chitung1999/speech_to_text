@@ -9,26 +9,48 @@ import 'domain/di/di.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  while (true) {
-    var status = await Permission.microphone.request();
-    if (status.isGranted) break;
-  }
-  await setupLocator();
-  final prefs = getIt<SharedPreferencesApp>();
-  String language = await prefs.getLanguage();
-  appConfig.setLoginStatus(await prefs.getLoginStatus());
+  final permission = await Permission.microphone.request();
 
-  runApp(
-      EasyLocalization(
-        supportedLocales: const [Locale('en'), Locale('vi')],
-        path: 'assets/translations',
-        assetLoader: const CodegenLoader(),
-        fallbackLocale: const Locale('en'),
-        startLocale: Locale(language),
-        child: const MyApp(),
-    )
-  );
+  if (!permission.isGranted) {
+    runApp(RequestPermissionPage());
+  } else {
+    await setupLocator();
+    final prefs = getIt<SharedPreferencesApp>();
+    String language = await prefs.getLanguage();
+    appConfig.setLoginStatus(await prefs.getLoginStatus());
+    runApp(
+        EasyLocalization(
+          supportedLocales: const [Locale('en'), Locale('vi')],
+          path: 'assets/translations',
+          assetLoader: const CodegenLoader(),
+          fallbackLocale: const Locale('en'),
+          startLocale: Locale(language),
+          child: const MyApp(),
+        )
+    );
+  }
 }
+
+class RequestPermissionPage extends StatelessWidget {
+  const RequestPermissionPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: TextButton(onPressed: () async => await openAppSettings(), child: const Text("Open Settings"),
+          ),
+        ))
+    );
+  }
+}
+
+
+
+
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
