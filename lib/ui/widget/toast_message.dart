@@ -52,7 +52,7 @@ abstract class ToastMessage {
                   ),
                   Text(
                     msg,
-                    style: TextStyle(color: AppColors.text),
+                    style: TextStyle(color: AppColors.white),
                     textAlign: TextAlign.center,
                   ),
                 ],

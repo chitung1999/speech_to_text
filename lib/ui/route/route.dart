@@ -1,18 +1,23 @@
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
-import 'package:speech_to_text/core/global_variables/app_config.dart';
 import 'package:speech_to_text/ui/page/home/home.dart';
 import 'package:speech_to_text/ui/page/login/login.dart';
 import 'package:speech_to_text/ui/page/setting/setting.dart';
 import 'package:speech_to_text/ui/page/sign_up/sign_up.dart';
+import 'package:speech_to_text/ui/page/startup/startup_app.dart';
 import 'package:speech_to_text/ui/route/route_name.dart';
 
 abstract class AppRouter {
   static final GoRouter router = GoRouter(
     redirect: (context, state) {return null;},
-    initialLocation: appConfig.getLoginStatus() ? RouteName.home : RouteName.login,
+    // initialLocation: RouteName.login,
     debugLogDiagnostics: kDebugMode,
     routes: [
+      GoRoute(
+        name: RouteName.startupApp,
+        path: RouteName.startupApp,
+        pageBuilder: (context, state) => const NoTransitionPage(child: StartupApp()),
+      ),
       GoRoute(
         name: RouteName.login,
         path: RouteName.login,

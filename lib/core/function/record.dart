@@ -21,26 +21,18 @@ abstract class RecordApp {
       await file.delete();
     }
 
-    try {
-      await recorder.start(
-        const RecordConfig(
-          encoder: AudioEncoder.aacLc,
-          bitRate: 128000,
-          sampleRate: 44100,
-          numChannels: 1,
-        ),
-        path: path,
-      );
-    } catch (e) {
-      print(e);
-    }
+    await recorder.start(
+      const RecordConfig(
+        encoder: AudioEncoder.aacLc,
+        bitRate: 128000,
+        sampleRate: 44100,
+        numChannels: 1,
+      ),
+      path: path,
+    );
   }
 
   static Future<void> endRecording() async {
-    try {
-      await recorder.stop();
-    } catch (e) {
-      print(e);
-    }
+    await recorder.stop();
   }
 }

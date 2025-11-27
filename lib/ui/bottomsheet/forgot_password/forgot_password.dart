@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
+import 'package:speech_to_text/core/constants/app_text_styles.dart';
 import 'package:speech_to_text/core/extensions/string_extension.dart';
 import 'package:speech_to_text/ui/widget/text_button_app.dart';
 import 'package:speech_to_text/ui/widget/toast_message.dart';
@@ -105,11 +106,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         children: [
           const Text(
             "Forgot Password",
-            style: TextStyle(
-              color: AppColors.textBottomSheet,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+            style: AppTextStyles.titleBottomSheet,
           ),
           SizedBox(),
           _content(),

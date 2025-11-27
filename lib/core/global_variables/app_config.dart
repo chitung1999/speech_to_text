@@ -5,13 +5,20 @@ class AppConfig {
 
   AppConfig._internal();
 
-  late bool? _loginStatus;
+  late String? _username;
+  late String? _fullName;
 
-  void setLoginStatus(bool loginStatus) {
-    _loginStatus = loginStatus;
+  void setUsername(String username) {
+    _username = username;
   }
 
-  bool getLoginStatus() => _loginStatus ?? false;
+  String? getUsername() => _username;
+
+  void setFullName(String fullName) {
+    _fullName = fullName;
+  }
+
+  String? getFullName() => _fullName;
 }
 
 AppConfig appConfig = AppConfig();
