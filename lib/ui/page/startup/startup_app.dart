@@ -17,7 +17,9 @@ class _StartupAppState extends State<StartupApp> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    _checkPermission();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkPermission();
+    });
   }
 
   @override

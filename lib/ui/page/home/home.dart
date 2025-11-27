@@ -12,6 +12,7 @@ import 'package:speech_to_text/ui/page/home/widgets/suggestion_chips.dart';
 import 'package:speech_to_text/ui/route/route_name.dart';
 import 'package:speech_to_text/ui/widget/avatar.dart';
 import 'package:speech_to_text/ui/widget/bottom_bar.dart';
+import 'package:speech_to_text/ui/widget/circular_progress.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.fullName});
@@ -93,7 +94,7 @@ class _HomePageState extends State<HomePage> {
             BottomBar(
               isLoginScreen: false,
               onStartRecording: _onRecording,
-              onEndRecording: _onEndRecording,
+              onEndRecording: () => CircularProgress.execute(context: context, function: _onEndRecording),
               onShowSetting: _onShowSetting,
             )
           ]
