@@ -111,7 +111,7 @@ class _SettingPageState extends State<SettingPage> {
                 context.pop();
                 context.replaceNamed(RouteName.login);
                 final prefs = getIt<SharedPreferencesApp>();
-                prefs.setLoginStatus(false);
+                prefs.setToken('');
               },
               textStyle: TextStyle(color: AppColors.text),
             ),

@@ -9,6 +9,7 @@ abstract class LoginResponse with _$LoginResponse {
   const factory LoginResponse({
   @Default('') String username,
   @Default('') String name,
+  @Default('') String token,
   @Default(false) bool result,
   }) = _LoginResponsew;
 

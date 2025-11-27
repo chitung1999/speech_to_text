@@ -14,7 +14,9 @@ import 'package:speech_to_text/ui/widget/avatar.dart';
 import 'package:speech_to_text/ui/widget/bottom_bar.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, required this.fullName});
+
+  final String fullName;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -69,13 +71,13 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                            "Hi Lan",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            )
+                        Text(
+                          "Hi ${widget.fullName}",
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
                         ),
                         Avatar(size: 30, isShowName: false)
                       ],

@@ -13,6 +13,7 @@ final getIt = GetIt.asNewInstance()..allowReassignment = true;
   preferRelativeImports: true, // default
   asExtension: true, // default
 )
+
 Future<void> setupLocator() async {
   Dio dio = Dio();
   dio.interceptors.add(InterceptorApp());
@@ -37,4 +38,9 @@ Future<void> setupLocator() async {
 
   // Initialize the generated dependencies
   await getIt.init();
+}
+
+void updateToken(String token) {
+  final Dio dio = getIt<Dio>();
+  dio.options.headers['Authorization'] = 'Bearer $token';
 }

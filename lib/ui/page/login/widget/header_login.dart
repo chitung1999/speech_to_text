@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
-import 'package:speech_to_text/core/constants/app_text_styles.dart';
 
 class HeaderLogin extends StatelessWidget {
   const HeaderLogin({super.key});

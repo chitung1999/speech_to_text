@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
 import 'package:speech_to_text/core/constants/app_text_styles.dart';
+import 'package:speech_to_text/core/enums/status.dart';
 import 'package:speech_to_text/domain/di/di.dart';
 import 'package:speech_to_text/domain/models/login/login_response.dart';
 import 'package:speech_to_text/domain/models/result/result.dart';
@@ -31,10 +32,17 @@ class ContentLogin extends StatelessWidget {
       final remoteData = getIt<RemoteData>();
       final Result<LoginResponse> result = await remoteData.onLogin(usernameController.text, passwordController.text);
 
-      if(context.mounted) {
+      if(result.status == Status.success) {
         final prefs = getIt<SharedPreferencesApp>();
-        prefs.setLoginStatus(true);
-        context.replaceNamed(RouteName.home);
+        await prefs.setToken(result.data!.token);
+
+        await prefs.setFullName(result.data!.name);
+
+        updateToken(result.data!.token);
+
+        if (context.mounted) {
+          context.replaceNamed(RouteName.home, queryParameters: {'fullName': result.data!.name});
+        }
       }
     }
 

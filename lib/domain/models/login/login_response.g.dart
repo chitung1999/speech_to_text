@@ -10,6 +10,7 @@ _LoginResponsew _$LoginResponsewFromJson(Map<String, dynamic> json) =>
     _LoginResponsew(
       username: json['username'] as String? ?? '',
       name: json['name'] as String? ?? '',
+      token: json['token'] as String? ?? '',
       result: json['result'] as bool? ?? false,
     );
 
@@ -17,5 +18,6 @@ Map<String, dynamic> _$LoginResponsewToJson(_LoginResponsew instance) =>
     <String, dynamic>{
       'username': instance.username,
       'name': instance.name,
+      'token': instance.token,
       'result': instance.result,
     };

@@ -26,7 +26,10 @@ abstract class AppRouter {
       GoRoute(
         name: RouteName.home,
         path: RouteName.home,
-          pageBuilder: (context, state) => const NoTransitionPage(child: HomePage()),
+        pageBuilder: (context, state) {
+          String fullName = state.uri.queryParameters['fullName'] ?? '';
+          return NoTransitionPage(child: HomePage(fullName: fullName));
+        },
       ),
       GoRoute(
         name: RouteName.setting,

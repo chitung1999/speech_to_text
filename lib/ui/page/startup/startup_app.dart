@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:speech_to_text/domain/di/di.dart';
+import 'package:speech_to_text/domain/repositories/local/shared_preference.dart';
 import 'package:speech_to_text/ui/route/route_name.dart';
 
 class StartupApp extends StatefulWidget {
@@ -32,11 +34,19 @@ class _StartupAppState extends State<StartupApp> with WidgetsBindingObserver {
   }
 
   Future<void> _checkPermission() async {
-    final status = await Permission.microphone.status;
+    final status = await Permission.microphone.request();
 
     if (status.isGranted) {
+      final prefs = getIt<SharedPreferencesApp>();
+      String token = await prefs.getToken();
+      String fullName = await prefs.getFullName();
+
       if (mounted) {
-        context.replaceNamed(RouteName.login);
+        if (token.isEmpty) {
+          context.replaceNamed(RouteName.login);
+        } else {
+          context.replaceNamed(RouteName.home, queryParameters: {'fullName': fullName});
+        }
       }
       return;
     }
