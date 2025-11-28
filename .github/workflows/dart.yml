@@ -17,10 +17,15 @@ jobs:
       - run: flutter pub get
       
 
-      - run: pod repo update
-        working-directory: ios
-      - run: pod install
-        working-directory: ios
+      # - run: pod repo update
+      #   working-directory: ios
+      # - run: pod install
+      #   working-directory: ios
+
+      - name: Install iOS pods
+        run: |
+          cd ios
+          pod install --repo-update
 
       - run: flutter build ios --release --no-codesign
 
