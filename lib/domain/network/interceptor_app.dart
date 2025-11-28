@@ -72,7 +72,7 @@ class InterceptorApp extends InterceptorsWrapper {
 
     dynamic data;
     if (response.data is Map) {
-      data = (response.data as Map<String, dynamic>)['Data'];
+      data = (response.data as Map<String, dynamic>)['data'];
     } else if (response.data is bool) {
       data = response.data as bool;
     } else {

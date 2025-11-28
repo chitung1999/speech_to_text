@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:speech_to_text/core/constants/app_colors.dart';
 import 'package:speech_to_text/core/constants/app_text_styles.dart';
 
-class AskElenaCard extends StatelessWidget {
+class WhisperText extends StatelessWidget {
   final String message;
 
-  const AskElenaCard({super.key, required this.message});
+  const WhisperText({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,14 @@ class AskElenaCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        color: Colors.black38,
+        color: AppColors.white,
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.black.withValues(alpha: 0.6),
+            blurRadius: 10,
+            spreadRadius: 1,
+          )
+        ],
       ),
       child: Padding(
         padding: const EdgeInsets.only(left: 15),
@@ -23,7 +31,7 @@ class AskElenaCard extends StatelessWidget {
           spacing: 20,
           children: [
             SvgPicture.asset(
-              "assets/icon/listening.svg",
+              "assets/icon/listening_2.svg",
               fit: BoxFit.fill,
               height: 50,
             ),
@@ -33,7 +41,7 @@ class AskElenaCard extends StatelessWidget {
                   child: SingleChildScrollView(
                       child: Text(
                         message,
-                        style: AppTextStyles.body,
+                        style: AppTextStyles.text_20,
                       )
                   ),
                 )

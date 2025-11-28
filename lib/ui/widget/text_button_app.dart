@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:speech_to_text/core/constants/app_colors.dart';
 
 enum TextButtonType { normal, outline, primary }
 
@@ -108,13 +109,13 @@ class TextButtonApp extends StatelessWidget {
         Container(
           width: width,
           height: height,
-          color: Colors.transparent,
+          color: AppColors.transparent,
           child: Center(child: content),
         ),
       );
     } else {
       final ButtonStyle style = TextButton.styleFrom(
-        backgroundColor: bgColor ?? Colors.transparent,
+        backgroundColor: bgColor ?? AppColors.transparent,
         minimumSize: Size(width ?? 0, height ?? 0),
         padding: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
@@ -123,7 +124,7 @@ class TextButtonApp extends StatelessWidget {
               ? BorderSide(color: borderColor ?? Colors.black, width: borderWidth ?? 1)
               : BorderSide.none,
         ),
-        overlayColor: isEnabled ? null : Colors.transparent,
+        overlayColor: isEnabled ? null : AppColors.transparent,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       );
 

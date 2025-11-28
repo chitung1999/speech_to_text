@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
+import 'package:speech_to_text/core/constants/app_text_styles.dart';
 class ItemSetting extends StatelessWidget {
   const ItemSetting({
     super.key,
@@ -18,36 +19,30 @@ class ItemSetting extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => onTap(),
-      splashColor: Colors.transparent,
-      highlightColor: Colors.transparent,
+      splashColor: AppColors.transparent,
+      highlightColor: AppColors.transparent,
       child: Row(
         spacing: 10,
         children: [
           Icon(
             icon,
-            size: 20,
-            color: AppColors.iconLight,
+            size: 22,
+            color: AppColors.icon,
           ),
           Text(
             title,
-            style: TextStyle(
-              color: AppColors.text,
-              fontSize: 15,
-            ),
+            style: AppTextStyles.text_16
           ),
           Spacer(),
           if(value != null)
           Text(
             value!,
-            style: TextStyle(
-              color: AppColors.text,
-              fontSize: 15,
-            ),
+            style: AppTextStyles.text_16,
           ),
           Icon(
             Icons.navigate_next,
-            size: 20,
-            color: AppColors.iconLight,
+            size: 22,
+            color: AppColors.icon,
           ),
         ],
       ),

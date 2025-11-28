@@ -2,10 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
+import 'package:speech_to_text/core/constants/app_text_styles.dart';
 import 'package:speech_to_text/core/enums/language.dart';
 import 'package:speech_to_text/domain/di/di.dart';
 import 'package:speech_to_text/domain/repositories/local/shared_preference.dart';
-import 'package:speech_to_text/presentation/generated/locales/locale_keys.g.dart';
+import 'package:speech_to_text/ui/generated/locales/locale_keys.g.dart';
 
 class SettingLanguage extends StatelessWidget {
   const SettingLanguage({super.key, required this.currentLanguage, required this.onSelected});
@@ -36,20 +37,17 @@ class SettingLanguage extends StatelessWidget {
 
           context.pop();
         },
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
+        splashColor: AppColors.transparent,
+        highlightColor: AppColors.transparent,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               getStrLanguage(language),
-              style: TextStyle(
-                color: AppColors.textBottomSheet,
-                fontSize: 18,
-              ),
+              style: AppTextStyles.text_18,
             ),
             if (language == currentLanguage)
-              Icon(Icons.check, color: AppColors.textBottomSheet)
+              Icon(Icons.check, color: AppColors.icon)
           ],
         ),
       );
@@ -58,7 +56,7 @@ class SettingLanguage extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(30),
       decoration: const BoxDecoration(
-        color: Colors.white38,
+        color: AppColors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
       ),
       child: Column(
@@ -67,11 +65,7 @@ class SettingLanguage extends StatelessWidget {
         children: [
           const Text(
             "Language",
-            style: TextStyle(
-              color: AppColors.textBottomSheet,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+            style: AppTextStyles.titleBottomSheet,
           ),
           SizedBox(),
           item(Language.en),

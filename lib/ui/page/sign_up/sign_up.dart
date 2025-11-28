@@ -15,14 +15,9 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return BackgroundPage(
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.transparent,
         appBar: GoBack(
-          title: 'Sign up',
-          style: TextStyle(
-            color: AppColors.text,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          )
+          title: 'Sign up'
         ),
         body: Center(
           child: Text(

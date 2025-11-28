@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:speech_to_text/core/constants/network.dart';
 import 'package:speech_to_text/domain/di/di.config.dart';
@@ -15,6 +13,7 @@ final getIt = GetIt.asNewInstance()..allowReassignment = true;
   preferRelativeImports: true, // default
   asExtension: true, // default
 )
+
 Future<void> setupLocator() async {
   Dio dio = Dio();
   dio.interceptors.add(InterceptorApp());
@@ -25,7 +24,7 @@ Future<void> setupLocator() async {
     ..headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Basic ${base64Encode(utf8.encode(NetworkConstants.basicAuth))}',
+      // 'Authorization': 'Basic ${base64Encode(utf8.encode(NetworkConstants.basicAuth))}',
     }
     ..followRedirects = false;
 
@@ -39,4 +38,9 @@ Future<void> setupLocator() async {
 
   // Initialize the generated dependencies
   await getIt.init();
+}
+
+void updateToken(String token) {
+  final Dio dio = getIt<Dio>();
+  dio.options.headers['Authorization'] = 'Bearer $token';
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:speech_to_text/core/constants/app_colors.dart';
+import 'package:speech_to_text/core/constants/app_text_styles.dart';
 
 class GoBack extends StatelessWidget implements PreferredSizeWidget {
-  const GoBack({super.key, required this.title, required this.style});
+  const GoBack({super.key, required this.title});
 
   final String title;
-  final TextStyle style;
 
   @override
   Widget build(BuildContext context) {
@@ -13,18 +14,19 @@ class GoBack extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         spacing: 10,
         children: [
+          SizedBox(width: 10),
           GestureDetector(
             child: Icon(
               Icons.arrow_back_ios,
               size: 20,
-              color: Colors.white,
+              color: AppColors.white,
             ),
             onTap: () => context.pop()
           ),
-          Text(title, style: style),
+          Text(title, style: AppTextStyles.headerText_20_700),
         ],
       ),
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.transparent,
       automaticallyImplyLeading: false,
       titleSpacing: 0,
     );

@@ -3,7 +3,9 @@ abstract class RouteName {
     return 'template-project.flutter.channel';
   }
 
-  static const String login = '/';
+  static const String startupApp = '/';
+
+  static const String login = '/login';
   // Input:
   // Output:
 

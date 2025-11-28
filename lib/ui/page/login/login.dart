@@ -1,30 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:speech_to_text/core/constants/app_colors.dart';
 import 'package:speech_to_text/ui/page/bg/bg.dart';
-import 'package:speech_to_text/ui/page/login/widget/login_account.dart';
-import 'package:speech_to_text/ui/page/login/widget/login_voice.dart';
+import 'package:speech_to_text/ui/page/login/widget/content_login.dart';
+import 'package:speech_to_text/ui/page/login/widget/header_login.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
-
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  bool _isLoginVoice = true;
-
-  void _onChangedLoginType() {
-    setState(() {_isLoginVoice = !_isLoginVoice;});
-  }
 
   @override
   Widget build(BuildContext context) {
     return BackgroundPage(
       child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: _isLoginVoice
-            ? LoginVoice(onChangedLoginType: _onChangedLoginType)
-            : LoginAccount(onChangedLoginType: _onChangedLoginType),
+        resizeToAvoidBottomInset: false,
+        backgroundColor: AppColors.transparent,
+        body: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HeaderLogin(),
+              Expanded(child: ContentLogin())
+            ],
+          ),
+        )
       ),
     );
   }
