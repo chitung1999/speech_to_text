@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:permission_master/permission_master.dart';
 import 'package:speech_to_text/domain/di/di.dart';
 import 'package:speech_to_text/domain/repositories/local/shared_preference.dart';
 import 'package:speech_to_text/ui/route/route_name.dart';
@@ -16,6 +16,8 @@ class StartupApp extends StatefulWidget {
 }
 
 class _StartupAppState extends State<StartupApp> with WidgetsBindingObserver {
+  final _permissionMaster = PermissionMaster();
+
   @override
   void initState() {
     super.initState();
@@ -72,9 +74,10 @@ class _StartupAppState extends State<StartupApp> with WidgetsBindingObserver {
   }
 
   Future<void> _requestPermission() async {
-    final status = await Permission.microphone.request();
+    final status = await _permissionMaster.requestMicrophonePermission();
 
-    if (status.isGranted) {
+
+    if (status == PermissionStatus.granted) {
       await _goNextScreen();
     } else if (mounted) {
       showDialog(
@@ -86,9 +89,9 @@ class _StartupAppState extends State<StartupApp> with WidgetsBindingObserver {
   }
 
   Future<void> _checkPermission() async {
-    final status = await Permission.microphone.status;
+    final status = await _permissionMaster.checkPermissionStatus(PermissionType.microphone.value);
 
-    if (status.isGranted) {
+    if (status == PermissionStatus.granted) {
       await _goNextScreen();
     }
   }
@@ -100,9 +103,9 @@ class _StartupAppState extends State<StartupApp> with WidgetsBindingObserver {
           "Please open Settings and grant the permission."),
       actions: [
         TextButton(
-          onPressed: () {
-            openAppSettings();
+          onPressed: () async {
             context.pop();
+            await _permissionMaster.openAppSettings();
           },
           child: const Text("Open Setting"),
         ),
