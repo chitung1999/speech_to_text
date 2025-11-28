@@ -12,7 +12,7 @@ class SuggestionChips extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
-            color: AppColors.chipBorder,
+            color: AppColors.border,
             width: 2,
           ),
           borderRadius: BorderRadius.circular(20),
@@ -20,7 +20,7 @@ class SuggestionChips extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 13),
         child: Text(
           label,
-          style: AppTextStyles.chip,
+          style: AppTextStyles.text_14,
         ),
       ),
     );

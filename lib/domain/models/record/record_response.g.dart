@@ -11,6 +11,7 @@ _RecordResponse _$RecordResponseFromJson(Map<String, dynamic> json) =>
       status: json['status'] as bool? ?? false,
       text: json['text'] as String? ?? '',
       language: json['language'] as String? ?? '',
+      command: json['command'] as String? ?? '',
     );
 
 Map<String, dynamic> _$RecordResponseToJson(_RecordResponse instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$RecordResponseToJson(_RecordResponse instance) =>
       'status': instance.status,
       'text': instance.text,
       'language': instance.language,
+      'command': instance.command,
     };

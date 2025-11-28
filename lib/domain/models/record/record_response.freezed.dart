@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$RecordResponse {
 
- bool get status; String get text; String get language;
+ bool get status; String get text; String get language; String get command;
 /// Create a copy of RecordResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $RecordResponseCopyWith<RecordResponse> get copyWith => _$RecordResponseCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RecordResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.text, text) || other.text == text)&&(identical(other.language, language) || other.language == language));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RecordResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.text, text) || other.text == text)&&(identical(other.language, language) || other.language == language)&&(identical(other.command, command) || other.command == command));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,status,text,language);
+int get hashCode => Object.hash(runtimeType,status,text,language,command);
 
 @override
 String toString() {
-  return 'RecordResponse(status: $status, text: $text, language: $language)';
+  return 'RecordResponse(status: $status, text: $text, language: $language, command: $command)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $RecordResponseCopyWith<$Res>  {
   factory $RecordResponseCopyWith(RecordResponse value, $Res Function(RecordResponse) _then) = _$RecordResponseCopyWithImpl;
 @useResult
 $Res call({
- bool status, String text, String language
+ bool status, String text, String language, String command
 });
 
 
@@ -65,11 +65,12 @@ class _$RecordResponseCopyWithImpl<$Res>
 
 /// Create a copy of RecordResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? text = null,Object? language = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? text = null,Object? language = null,Object? command = null,}) {
   return _then(_self.copyWith(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as bool,text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
 as String,language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String,command: null == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -155,10 +156,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool status,  String text,  String language)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool status,  String text,  String language,  String command)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _RecordResponse() when $default != null:
-return $default(_that.status,_that.text,_that.language);case _:
+return $default(_that.status,_that.text,_that.language,_that.command);case _:
   return orElse();
 
 }
@@ -176,10 +177,10 @@ return $default(_that.status,_that.text,_that.language);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool status,  String text,  String language)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool status,  String text,  String language,  String command)  $default,) {final _that = this;
 switch (_that) {
 case _RecordResponse():
-return $default(_that.status,_that.text,_that.language);case _:
+return $default(_that.status,_that.text,_that.language,_that.command);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +197,10 @@ return $default(_that.status,_that.text,_that.language);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool status,  String text,  String language)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool status,  String text,  String language,  String command)?  $default,) {final _that = this;
 switch (_that) {
 case _RecordResponse() when $default != null:
-return $default(_that.status,_that.text,_that.language);case _:
+return $default(_that.status,_that.text,_that.language,_that.command);case _:
   return null;
 
 }
@@ -211,12 +212,13 @@ return $default(_that.status,_that.text,_that.language);case _:
 @JsonSerializable()
 
 class _RecordResponse implements RecordResponse {
-  const _RecordResponse({this.status = false, this.text = '', this.language = ''});
+  const _RecordResponse({this.status = false, this.text = '', this.language = '', this.command = ''});
   factory _RecordResponse.fromJson(Map<String, dynamic> json) => _$RecordResponseFromJson(json);
 
 @override@JsonKey() final  bool status;
 @override@JsonKey() final  String text;
 @override@JsonKey() final  String language;
+@override@JsonKey() final  String command;
 
 /// Create a copy of RecordResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -231,16 +233,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RecordResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.text, text) || other.text == text)&&(identical(other.language, language) || other.language == language));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RecordResponse&&(identical(other.status, status) || other.status == status)&&(identical(other.text, text) || other.text == text)&&(identical(other.language, language) || other.language == language)&&(identical(other.command, command) || other.command == command));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,status,text,language);
+int get hashCode => Object.hash(runtimeType,status,text,language,command);
 
 @override
 String toString() {
-  return 'RecordResponse(status: $status, text: $text, language: $language)';
+  return 'RecordResponse(status: $status, text: $text, language: $language, command: $command)';
 }
 
 
@@ -251,7 +253,7 @@ abstract mixin class _$RecordResponseCopyWith<$Res> implements $RecordResponseCo
   factory _$RecordResponseCopyWith(_RecordResponse value, $Res Function(_RecordResponse) _then) = __$RecordResponseCopyWithImpl;
 @override @useResult
 $Res call({
- bool status, String text, String language
+ bool status, String text, String language, String command
 });
 
 
@@ -268,11 +270,12 @@ class __$RecordResponseCopyWithImpl<$Res>
 
 /// Create a copy of RecordResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? text = null,Object? language = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? text = null,Object? language = null,Object? command = null,}) {
   return _then(_RecordResponse(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as bool,text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
 as String,language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String,command: null == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

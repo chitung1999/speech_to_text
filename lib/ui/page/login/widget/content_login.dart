@@ -6,7 +6,6 @@ import 'package:speech_to_text/core/enums/status.dart';
 import 'package:speech_to_text/domain/di/di.dart';
 import 'package:speech_to_text/domain/models/login/login_response.dart';
 import 'package:speech_to_text/domain/models/result/result.dart';
-import 'package:speech_to_text/domain/repositories/local/shared_preference.dart';
 import 'package:speech_to_text/domain/repositories/remote/remote_data.dart';
 import 'package:speech_to_text/ui/bottomsheet/forgot_password/forgot_password.dart';
 import 'package:speech_to_text/ui/route/route_name.dart';
@@ -33,13 +32,6 @@ class ContentLogin extends StatelessWidget {
       final Result<LoginResponse> result = await remoteData.onLogin(usernameController.text, passwordController.text);
 
       if(result.status == Status.success) {
-        final prefs = getIt<SharedPreferencesApp>();
-        await prefs.setToken(result.data!.token);
-
-        await prefs.setFullName(result.data!.name);
-
-        updateToken(result.data!.token);
-
         if (context.mounted) {
           context.replaceNamed(RouteName.home, queryParameters: {'fullName': result.data!.name});
         }
@@ -48,7 +40,7 @@ class ContentLogin extends StatelessWidget {
 
     return Container(
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: AppColors.white,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(24),
           topRight: Radius.circular(24),
@@ -56,24 +48,22 @@ class ContentLogin extends StatelessWidget {
       ),
       child: SafeArea(
         child: Padding(
-          padding: EdgeInsetsGeometry.symmetric(horizontal: 15, vertical: 10),
+          padding: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 10),
           child: Column(
             spacing: 30,
             children: [
               TextFormField(
-                style: AppTextStyles.medium,
+                style: AppTextStyles.text_16,
                 controller: usernameController,
                 decoration: InputDecoration(
                   hintText: 'User name',
                   hintStyle: AppTextStyles.hintText,
                   prefixIcon: const Icon(Icons.person_outline, color: AppColors.hintText),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 ),
               ),
               TextFormField(
-                style: AppTextStyles.medium,
+                style: AppTextStyles.text_16,
                 obscureText: true,
                 controller: passwordController,
                 decoration: InputDecoration(
@@ -115,7 +105,7 @@ class ContentLogin extends StatelessWidget {
                 children: [
                   Text(
                     "Don't Have An Account?",
-                    style: AppTextStyles.small
+                    style: AppTextStyles.text_14
                   ),
                   TextButtonApp.normal(
                     title: 'Sign Up',

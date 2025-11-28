@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:speech_to_text/core/constants/app_colors.dart';
 
 class CircularProgress {
   static Future<void> execute({
@@ -23,7 +24,7 @@ class CircularProgress {
       builder: (_) => Center(
         child: CircularProgressIndicator(
           strokeWidth: 3,
-          color: Colors.white,
+          color: AppColors.white,
         ),
       ),
     );

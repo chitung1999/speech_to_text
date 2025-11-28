@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/domain/repositories/local/shared_preference.dart';
 import 'package:speech_to_text/ui/route/route.dart';
-import 'package:speech_to_text/presentation/generated/locales/codegen_loader.g.dart';
+import 'package:speech_to_text/ui/generated/locales/codegen_loader.g.dart';
 import 'domain/di/di.dart';
 
 Future<void> main() async {

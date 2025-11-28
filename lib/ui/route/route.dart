@@ -10,7 +10,7 @@ import 'package:speech_to_text/ui/route/route_name.dart';
 abstract class AppRouter {
   static final GoRouter router = GoRouter(
     redirect: (context, state) {return null;},
-    // initialLocation: RouteName.login,
+    // initialLocation: RouteName.setting,
     debugLogDiagnostics: kDebugMode,
     routes: [
       GoRoute(
@@ -34,7 +34,10 @@ abstract class AppRouter {
       GoRoute(
         name: RouteName.setting,
         path: RouteName.setting,
-        pageBuilder: (context, state) => const NoTransitionPage(child: SettingPage()),
+        pageBuilder: (context, state) {
+          String fullName = state.uri.queryParameters['fullName'] ?? '';
+          return NoTransitionPage(child: SettingPage(fullName: fullName));
+        },
       ),
       GoRoute(
         name: RouteName.signUp,

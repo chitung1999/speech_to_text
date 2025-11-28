@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
+import 'package:speech_to_text/core/constants/app_text_styles.dart';
 
 enum NotificationType {success, warning, error}
 
@@ -14,15 +15,15 @@ abstract class ToastMessage {
     IconData icon;
     switch (type) {
       case NotificationType.error:
-        iconColor = Colors.red;
+        iconColor = AppColors.error;
         icon = Icons.error_outline;
         break;
       case NotificationType.warning:
-        iconColor = Colors.yellow;
+        iconColor = AppColors.warning;
         icon = Icons.warning_amber;
         break;
       case NotificationType.success:
-        iconColor = Colors.green;
+        iconColor = AppColors.success;
         icon = Icons.check;
         break;
     }
@@ -30,15 +31,15 @@ abstract class ToastMessage {
     final overlay = Overlay.of(context);
     final overlayEntry = OverlayEntry(
       builder: (context) => Positioned.fill(
-        bottom: 20,
+        bottom: 40,
         child: Align(
           alignment: Alignment.bottomCenter,
           child: Material(
-            color: Colors.transparent,
+            color: AppColors.transparent,
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 16),
               decoration: BoxDecoration(
-                color: Colors.black87,
+                color: AppColors.bgToastMsg,
                 borderRadius: BorderRadius.circular(32),
               ),
               child: Row(
@@ -52,7 +53,7 @@ abstract class ToastMessage {
                   ),
                   Text(
                     msg,
-                    style: TextStyle(color: AppColors.white),
+                    style: AppTextStyles.headerText_14,
                     textAlign: TextAlign.center,
                   ),
                 ],

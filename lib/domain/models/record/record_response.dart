@@ -10,6 +10,7 @@ abstract class RecordResponse with _$RecordResponse {
     @Default(false) bool status,
     @Default('') String text,
     @Default('') String language,
+    @Default('') String command,
   }) = _RecordResponse;
 
   factory RecordResponse.fromJson(Map<String, dynamic> json) =>
