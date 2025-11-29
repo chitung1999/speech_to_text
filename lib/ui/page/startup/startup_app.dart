@@ -7,6 +7,7 @@ import 'package:speech_to_text/domain/di/di.dart';
 import 'package:speech_to_text/domain/repositories/local/shared_preference.dart';
 import 'package:speech_to_text/ui/route/route_name.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:smart_permission/smart_permission.dart';
 
 class StartupApp extends StatefulWidget {
   const StartupApp({super.key});
@@ -72,7 +73,13 @@ class _StartupAppState extends State<StartupApp> with WidgetsBindingObserver {
   }
 
   Future<void> _requestPermission() async {
-    final status = await Permission.microphone.request();
+    // final status = await Permission.microphone.request();
+    await SmartPermission.request(
+      context,
+      permission: Permission.microphone,
+    );
+
+    final status = await Permission.microphone.status;
 
     if (status.isGranted) {
       await _goNextScreen();
