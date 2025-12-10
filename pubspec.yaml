@@ -46,7 +46,7 @@ dependencies:
   injectable: ^2.5.1
   shared_preferences: ^2.5.3
   record: ^6.1.2
-  permission_master: ^0.0.17
+  permission_handler: ^12.0.1
   path_provider: ^2.1.5
   path: ^1.9.1
 
