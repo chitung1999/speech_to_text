@@ -72,7 +72,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _onShowChat() {
-
+    if (_isRecording) return;
+    context.pushNamed(RouteName.history);
   }
 
   void _onShowSetting() {
@@ -121,7 +122,7 @@ class _HomePageState extends State<HomePage> {
         bottomNavigationBar: BottomBar(
           onStartRecording: _onRecording,
           onEndRecording: _onEndRecording,
-          onShowChat: () => _onShowChat,
+          onShowChat: _onShowChat,
           onShowSetting: _onShowSetting
         ),
       )

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speech_to_text/ui/page/home/home.dart';
+import 'package:speech_to_text/ui/page/history/history.dart';
 import 'package:speech_to_text/ui/page/login/login.dart';
 import 'package:speech_to_text/ui/page/setting/setting.dart';
 import 'package:speech_to_text/ui/page/sign_up/sign_up.dart';
@@ -43,6 +44,11 @@ abstract class AppRouter {
         name: RouteName.signUp,
         path: RouteName.signUp,
         pageBuilder: (context, state) => const NoTransitionPage(child: SignUpPage()),
+      ),
+      GoRoute(
+        name: RouteName.history,
+        path: RouteName.history,
+        pageBuilder: (context, state) => const NoTransitionPage(child: HistoryPage()),
       ),
     ],
   );

@@ -24,4 +24,8 @@ abstract class RouteName {
   static const String forgotPassword = '/forgot-password';
   // Input:
   // Output:
+
+  static const String history = '/history';
+  // Input:
+  // Output:
 }
