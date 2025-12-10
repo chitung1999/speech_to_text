@@ -39,10 +39,6 @@ class SuggestionChips extends StatelessWidget {
           _suggestionChip("Sports news"),
           _suggestionChip("Random fun"),
           _suggestionChip("Today’s Weather"),
-          _suggestionChip("Play a game"),
-          _suggestionChip("Sports news"),
-          _suggestionChip("Random fun"),
-          _suggestionChip("Today’s Weather"),
         ],
       ),
     );
