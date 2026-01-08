@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:speech_to_text/core/enums/status.dart';
 import 'package:speech_to_text/domain/di/di.dart';
 import 'package:speech_to_text/domain/models/index.dart';
+import 'package:speech_to_text/domain/models/history/history_response.dart';
 import 'package:speech_to_text/domain/models/login/login_response.dart';
 import 'package:speech_to_text/domain/models/record/record_response.dart';
 import 'package:speech_to_text/domain/network/rest_client.dart';
@@ -13,6 +14,7 @@ import 'package:speech_to_text/domain/repositories/local/shared_preference.dart'
 abstract class RemoteData {
   Future<Result<LoginResponse>> onLogin(String username, String password);
   Future<Result<RecordResponse>> onSpeechToText();
+  Future<Result<HistoryResponse>> getHistory();
 }
 
 @Injectable(as: RemoteData)
@@ -30,9 +32,7 @@ class RemoteDataImpl implements RemoteData {
         "password": password
       };
 
-      // final result = await _restClient.onLogin(params);
-      //nctung2 dummy
-      final result = LoginResponse(result: true, name: 'Tung', token: 'fake-token');
+      final result = await _restClient.onLogin(params);
 
       await _prefs.setToken(result.token);
       await _prefs.setFullName(result.name);
@@ -54,6 +54,16 @@ class RemoteDataImpl implements RemoteData {
       //nctung2 dummy
       final result = RecordResponse(status: true, text: 'This is response from whisper', command: 'Hello!');
 
+      return Result(data: result, status: Status.success);
+    } catch (e) {
+      return Result(data: null, status: Status.error);
+    }
+  }
+
+  @override
+  Future<Result<HistoryResponse>> getHistory() async {
+    try {
+      final result = await _restClient.getHistory();
       return Result(data: result, status: Status.success);
     } catch (e) {
       return Result(data: null, status: Status.error);

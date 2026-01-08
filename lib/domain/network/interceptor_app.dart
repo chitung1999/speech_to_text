@@ -2,12 +2,19 @@ import 'package:dio/dio.dart';
 import 'package:speech_to_text/core/constants/http_code.dart';
 import 'package:speech_to_text/core/exceptions/base_exception.dart';
 import 'package:speech_to_text/core/exceptions/error_response.dart';
+import 'package:speech_to_text/domain/di/di.dart';
+import 'package:speech_to_text/domain/repositories/local/shared_preference.dart';
 
 class InterceptorApp extends InterceptorsWrapper {
   InterceptorApp();
 
   final List<String> formDataList = [];
-  final List<String> urlRequiredFullResponseData = [];
+  final List<String> urlRequiredFullResponseData = [
+    'user-session/me', // Cần full response để có cả data và message
+  ];
+  final List<String> _pathsNotRequireToken = [
+    'auth/login/account',
+  ];
 
   static Dio? dio;
 
@@ -16,11 +23,14 @@ class InterceptorApp extends InterceptorsWrapper {
       RequestOptions options,
       RequestInterceptorHandler handler,
       ) async {
-    // if (!EndPoint.listPathNotRequireToken.contains(options.path)) {
-    //   final token = await _userLocalDataSource.getToken();
-    //   options.headers['Authorization'] = 'Bearer $token';
-    //   options.headers['User-Agent'] = await _userLocalDataSource.getUserAgent();
-    // }
+    // Auto attach Bearer token for authenticated APIs
+    if (!_pathsNotRequireToken.contains(options.path)) {
+      final prefs = getIt<SharedPreferencesApp>();
+      final token = await prefs.getToken();
+      if (token.isNotEmpty) {
+        options.headers['Authorization'] = 'Bearer $token';
+      }
+    }
 
     // if (formDataList.contains(options.path)) {
     //   options.headers['contentType'] = 'multipart/form-data';
@@ -70,13 +80,10 @@ class InterceptorApp extends InterceptorsWrapper {
       return;
     }
 
-    dynamic data;
-    if (response.data is Map) {
-      data = (response.data as Map<String, dynamic>)['data'];
-    } else if (response.data is bool) {
-      data = response.data as bool;
-    } else {
-      data = response.data;
+    dynamic data = response.data;
+    // Only unwrap `{ data: ... }` when the key actually exists.
+    if (data is Map<String, dynamic> && data.containsKey('data')) {
+      data = data['data'];
     }
 
     if (data is! Map && data is! List && data is! bool) {

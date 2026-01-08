@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:speech_to_text/domain/models/history/history_response.dart';
 import 'package:speech_to_text/domain/models/login/login_response.dart';
 import 'package:speech_to_text/domain/models/record/record_response.dart';
 
@@ -18,4 +19,7 @@ abstract class RestClient {
   @POST("whisper/transcribe")
   @MultiPart()
   Future<RecordResponse> onSpeechToText(@Part(name: "file") MultipartFile file);
+
+  @GET("user-session/me")
+  Future<HistoryResponse> getHistory();
 }

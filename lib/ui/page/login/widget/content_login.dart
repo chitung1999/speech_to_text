@@ -13,30 +13,46 @@ import 'package:speech_to_text/ui/widget/circular_progress.dart';
 import 'package:speech_to_text/ui/widget/text_button_app.dart';
 import 'package:speech_to_text/ui/widget/toast_message.dart';
 
-class ContentLogin extends StatelessWidget {
+class ContentLogin extends StatefulWidget {
   const ContentLogin({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController usernameController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
+  State<ContentLogin> createState() => _ContentLoginState();
+}
 
+class _ContentLoginState extends State<ContentLogin> {
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
-    Future<void> onLogin() async {
-      if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
-        ToastMessage.show(context, NotificationType.error, 'Invalid username or password');
-        return;
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  Future<void> onLogin() async {
+    if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
+      ToastMessage.show(context, NotificationType.error, 'Invalid username or password');
+      return;
+    }
+
+    final remoteData = getIt<RemoteData>();
+    final Result<LoginResponse> result = await remoteData.onLogin(usernameController.text, passwordController.text);
+
+    if(result.status == Status.success) {
+      if (context.mounted) {
+        context.replaceNamed(RouteName.home, queryParameters: {'fullName': result.data!.name});
       }
-
-      final remoteData = getIt<RemoteData>();
-      final Result<LoginResponse> result = await remoteData.onLogin(usernameController.text, passwordController.text);
-
-      if(result.status == Status.success) {
-        if (context.mounted) {
-          context.replaceNamed(RouteName.home, queryParameters: {'fullName': result.data!.name});
-        }
+    } else {
+      if (context.mounted) {
+        ToastMessage.show(context, NotificationType.error, 'Đăng nhập thất bại. Vui lòng thử lại.');
       }
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
 
     return Container(
       decoration: const BoxDecoration(
