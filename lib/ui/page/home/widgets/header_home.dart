@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/core/constants/app_text_styles.dart';
 import 'package:speech_to_text/ui/widget/avatar.dart';
@@ -17,11 +18,11 @@ class HeaderHome extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'VoxHome',
+              'home.speech_to_text'.tr(),
               style: AppTextStyles.headerText_12_700,
             ),
             Text(
-                "Hi $fullName",
+                'home.hi'.tr(namedArgs: {'fullName': fullName}),
                 style: AppTextStyles.headerText_20_700
             ),
           ],

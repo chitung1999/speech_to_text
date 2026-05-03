@@ -13,7 +13,7 @@ class HeaderLogin extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'VoxHome',
+              'Speech To Text',
               style: AppTextStyles.headerText_14_700,
             ),
             SizedBox(height: 10),

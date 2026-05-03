@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -95,16 +96,15 @@ class _StartupAppState extends State<StartupApp> with WidgetsBindingObserver {
 
   Widget _permissionDialog () {
     return AlertDialog(
-      title: const Text("Microphone Permission"),
-      content: const Text("The app needs microphone access to function properly. "
-          "Please open Settings and grant the permission."),
+      title: Text('startup.microphone_permission'.tr()),
+      content: Text('startup.permission_message'.tr()),
       actions: [
         TextButton(
           onPressed: () {
             openAppSettings();
             context.pop();
           },
-          child: const Text("Open Setting"),
+          child: Text('startup.open_setting'.tr()),
         ),
       ],
     );

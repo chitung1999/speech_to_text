@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
@@ -23,7 +24,11 @@ class _HistoryPageState extends State<HistoryPage> {
   bool _isLoading = true;
   String? _errorMessage;
 
-  final List<String> _filters = const ['Tất cả', 'Hôm nay', 'Tuần này'];
+  List<String> get _filters => [
+    'history.all'.tr(),
+    'history.today'.tr(),
+    'history.this_week'.tr()
+  ];
   int _selectedFilter = 0;
 
   @override
@@ -51,13 +56,13 @@ class _HistoryPageState extends State<HistoryPage> {
         });
       } else {
         setState(() {
-          _errorMessage = 'Không thể tải dữ liệu lịch sử';
+          _errorMessage = 'history.load_error'.tr();
           _isLoading = false;
         });
       }
     } catch (e) {
       setState(() {
-        _errorMessage = 'Đã xảy ra lỗi: ${e.toString()}';
+        _errorMessage = 'history.error_occurred'.tr(namedArgs: {'error': e.toString()});
         _isLoading = false;
       });
     }
@@ -73,11 +78,11 @@ class _HistoryPageState extends State<HistoryPage> {
       final difference = today.difference(itemDate).inDays;
       
       if (difference == 0) {
-        return 'Hôm nay · ${DateFormat('HH:mm').format(date)}';
+        return 'history.today_time'.tr(namedArgs: {'time': DateFormat('HH:mm').format(date)});
       } else if (difference == 1) {
-        return 'Hôm qua · ${DateFormat('HH:mm').format(date)}';
+        return 'history.yesterday_time'.tr(namedArgs: {'time': DateFormat('HH:mm').format(date)});
       } else if (difference < 7) {
-        return '$difference ngày trước';
+        return 'history.days_ago'.tr(namedArgs: {'days': difference.toString()});
       } else {
         return DateFormat('dd/MM/yyyy · HH:mm').format(date);
       }
@@ -123,7 +128,7 @@ class _HistoryPageState extends State<HistoryPage> {
     return BackgroundPage(
       child: Scaffold(
         backgroundColor: AppColors.transparent,
-        appBar: const GoBack(title: 'Lịch sử'),
+        appBar: GoBack(title: 'history.title'.tr()),
         body: Container(
           color: AppColors.bgContent,
           child: SafeArea(
@@ -148,7 +153,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                     const SizedBox(height: 16),
                                     ElevatedButton(
                                       onPressed: _loadHistory,
-                                      child: const Text('Thử lại'),
+                                      child: Text('history.try_again'.tr()),
                                     ),
                                   ],
                                 ),
@@ -160,7 +165,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                       children: [
                                         Icon(Icons.history, size: 48, color: AppColors.hintText),
                                         const SizedBox(height: 16),
-                                        Text('Chưa có lịch sử nào', style: AppTextStyles.text_16.copyWith(color: AppColors.hintText)),
+                                        Text('history.no_history'.tr(), style: AppTextStyles.text_16.copyWith(color: AppColors.hintText)),
                                       ],
                                     ),
                                   )

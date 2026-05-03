@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
 import 'package:speech_to_text/core/constants/app_text_styles.dart';
@@ -33,12 +34,12 @@ class SuggestionChips extends StatelessWidget {
         spacing: 10.0,
         runSpacing: 10.0,
         children: [
-          _suggestionChip("Sing me a song"),
-          _suggestionChip("Restaurants nearby"),
-          _suggestionChip("Play a game"),
-          _suggestionChip("Sports news"),
-          _suggestionChip("Random fun"),
-          _suggestionChip("Today’s Weather"),
+          _suggestionChip('suggestions.sing_song'.tr()),
+          _suggestionChip('suggestions.restaurants'.tr()),
+          _suggestionChip('suggestions.play_game'.tr()),
+          _suggestionChip('suggestions.sports_news'.tr()),
+          _suggestionChip('suggestions.random_fun'.tr()),
+          _suggestionChip('suggestions.weather'.tr()),
         ],
       ),
     );

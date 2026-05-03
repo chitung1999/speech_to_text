@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
 import 'package:speech_to_text/core/constants/app_text_styles.dart';
@@ -23,13 +24,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     late String hintText;
     switch (_step) {
       case Step.email:
-        hintText = 'Enter your email';
+        hintText = 'forgot_password.enter_email'.tr();
         break;
       case Step.otp:
-        hintText = 'Enter OTP';
+        hintText = 'forgot_password.enter_otp'.tr();
         break;
       case Step.password:
-        hintText = 'Enter new password';
+        hintText = 'forgot_password.enter_new_password'.tr();
         break;
     }
 
@@ -52,7 +53,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           style: AppTextStyles.text_16,
           obscureText: true,
           decoration: InputDecoration(
-            hintText: 'Re-enter new password',
+            hintText: 'forgot_password.re_enter_password'.tr(),
             hintStyle: AppTextStyles.hintText,
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
           ),
@@ -70,14 +71,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           _firstController.text = '';
           setState(() {_step = Step.otp;});
         } else {
-          ToastMessage.show(context, NotificationType.error, 'Invalid email.');
+          ToastMessage.show(context, NotificationType.error, 'forgot_password.invalid_email'.tr());
         }
         break;
       case Step.otp:
         if(_firstController.text.isValidOtp) {
           setState(() {_step = Step.password;});
         } else {
-          ToastMessage.show(context, NotificationType.error, 'Invalid OTP.');
+          ToastMessage.show(context, NotificationType.error, 'forgot_password.invalid_otp'.tr());
         }
         _firstController.text = '';
         break;
@@ -98,14 +99,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         mainAxisSize: MainAxisSize.min,
         spacing: 20,
         children: [
-          const Text(
-            "Forgot Password",
+          Text(
+            'forgot_password.title'.tr(),
             style: AppTextStyles.titleBottomSheet,
           ),
           SizedBox(),
           _content(),
           TextButtonApp.primary(
-              title: 'Continue',
+              title: 'forgot_password.continue'.tr(),
               height: 50,
               width: double.infinity,
               bgColor: AppColors.bgButton,

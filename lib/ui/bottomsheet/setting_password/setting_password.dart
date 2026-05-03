@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
 import 'package:speech_to_text/core/constants/app_text_styles.dart';
@@ -23,8 +24,8 @@ class SettingPassword extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         spacing: 20,
         children: [
-          const Text(
-            "Change Password",
+          Text(
+            'change_password.title'.tr(),
             style: AppTextStyles.titleBottomSheet,
           ),
           SizedBox(),
@@ -33,7 +34,7 @@ class SettingPassword extends StatelessWidget {
             style: AppTextStyles.text_16,
             obscureText: true,
             decoration: InputDecoration(
-              hintText: 'Enter old password',
+              hintText: 'change_password.enter_old_password'.tr(),
               hintStyle: AppTextStyles.hintText,
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
             ),
@@ -43,7 +44,7 @@ class SettingPassword extends StatelessWidget {
             style: AppTextStyles.text_16,
             obscureText: true,
             decoration: InputDecoration(
-              hintText: 'Enter new password',
+              hintText: 'change_password.enter_new_password'.tr(),
               hintStyle: AppTextStyles.hintText,
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
             ),
@@ -53,13 +54,13 @@ class SettingPassword extends StatelessWidget {
             style: AppTextStyles.text_16,
             obscureText: true,
             decoration: InputDecoration(
-              hintText: 'Re-enter new password',
+              hintText: 'change_password.re_enter_password'.tr(),
               hintStyle: AppTextStyles.hintText,
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
             ),
           ),
           TextButtonApp.primary(
-              title: 'Continue',
+              title: 'change_password.continue'.tr(),
               height: 50,
               width: double.infinity,
               bgColor: AppColors.bgButton,

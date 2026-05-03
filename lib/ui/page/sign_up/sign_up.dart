@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
 import 'package:speech_to_text/ui/page/bg/bg.dart';
@@ -17,11 +18,11 @@ class _SignUpPageState extends State<SignUpPage> {
       child: Scaffold(
         backgroundColor: AppColors.transparent,
         appBar: GoBack(
-          title: 'Sign up'
+          title: 'sign_up.title'.tr()
         ),
         body: Center(
           child: Text(
-            'Please contact the administrator to register an account.',
+            'sign_up.contact_admin'.tr(),
             textAlign: TextAlign.center,
             style: TextStyle(
               color: AppColors.text,

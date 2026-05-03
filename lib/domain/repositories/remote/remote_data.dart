@@ -47,14 +47,15 @@ class RemoteDataImpl implements RemoteData {
   @override
   Future<Result<RecordResponse>> onSpeechToText() async {
     try {
-      // final dir = await getTemporaryDirectory();
-      // final path = p.join(dir.path, 'record.m4a');
-      // final file = MultipartFile.fromFileSync(path, filename: p.basename(path));
-      // final result = await _restClient.onSpeechToText(file);
+      final dir = await getTemporaryDirectory();
+      final path = p.join(dir.path, 'record.m4a');
+      final file = MultipartFile.fromFileSync(path, filename: p.basename(path));
+      final result = await _restClient.onSpeechToText(file);
+      final fakeResult = result.copyWith(command: result.text);
       //nctung2 dummy
-      final result = RecordResponse(status: true, text: 'This is response from whisper', command: 'Hello!');
+      // final result = RecordResponse(status: true, text: 'Loading...', command: 'Hello!');
 
-      return Result(data: result, status: Status.success);
+      return Result(data: fakeResult, status: Status.success);
     } catch (e) {
       return Result(data: null, status: Status.error);
     }

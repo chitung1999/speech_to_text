@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
@@ -26,11 +27,20 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool _isRecording = false;
-  String message = 'Say something...';
+  String? _resultText;
+
+  String get message {
+    if (_resultText != null && _resultText!.isNotEmpty) {
+      return _resultText!;
+    }
+    if (_isRecording) {
+      return 'home.listening'.tr();
+    }
+    return 'home.say_something'.tr();
+  }
 
   Future<void> _onRecording() async {
     setState(() {
-      message = 'Listening...';
       _isRecording = true;
     });
 
@@ -44,7 +54,9 @@ class _HomePageState extends State<HomePage> {
     final Result<RecordResponse> result = await remoteData.onSpeechToText();
 
     if (result.status == Status.success && result.data!.text.isNotEmpty) {
-      setState(() => message = result.data!.text);
+      setState(() {
+        _resultText = result.data!.text;
+      });
       await Future.delayed(const Duration(seconds: 2));
 
       if (result.data!.command.isNotEmpty && mounted) {
@@ -57,7 +69,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     setState(() {
-      message = 'Say something...';
+      _resultText = null;
       _isRecording = false;
     });
   }
@@ -83,6 +95,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Đảm bảo rebuild khi locale thay đổi
+    final currentLocale = context.locale;
     final double fixedHeight = 160;
     return BackgroundPage(
       child: Scaffold(

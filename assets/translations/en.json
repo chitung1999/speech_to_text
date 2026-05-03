@@ -2,9 +2,79 @@
   "common": {
     "title": "Project"
   },
+  "login": {
+    "invalid_credentials": "Invalid username or password",
+    "login_failed": "Login failed. Please try again.",
+    "username": "User name",
+    "password": "Password",
+    "forgot_password": "Forgot password?",
+    "login_button": "Login",
+    "no_account": "Don't Have An Account?",
+    "sign_up": "Sign Up"
+  },
+  "home": {
+    "say_something": "Say something...",
+    "listening": "Listening...",
+    "hi": "Hi {fullName}",
+    "speech_to_text": "Speech To Text"
+  },
+  "history": {
+    "title": "History",
+    "all": "All",
+    "today": "Today",
+    "this_week": "This week",
+    "load_error": "Unable to load history data",
+    "error_occurred": "An error occurred: {error}",
+    "try_again": "Try again",
+    "no_history": "No history yet",
+    "today_time": "Today · {time}",
+    "yesterday_time": "Yesterday · {time}",
+    "days_ago": "{days} days ago"
+  },
   "setting": {
+    "title": "Setting",
     "language": "Language",
     "en": "English",
-    "vn": "Vietnamese"
+    "vn": "Vietnamese",
+    "password": "Password",
+    "information": "Information",
+    "logout": "Logout"
+  },
+  "sign_up": {
+    "title": "Sign up",
+    "contact_admin": "Please contact the administrator to register an account."
+  },
+  "startup": {
+    "microphone_permission": "Microphone Permission",
+    "permission_message": "The app needs microphone access to function properly. Please open Settings and grant the permission.",
+    "open_setting": "Open Setting"
+  },
+  "forgot_password": {
+    "title": "Forgot Password",
+    "enter_email": "Enter your email",
+    "enter_otp": "Enter OTP",
+    "enter_new_password": "Enter new password",
+    "re_enter_password": "Re-enter new password",
+    "continue": "Continue",
+    "invalid_email": "Invalid email.",
+    "invalid_otp": "Invalid OTP."
+  },
+  "change_password": {
+    "title": "Change Password",
+    "enter_old_password": "Enter old password",
+    "enter_new_password": "Enter new password",
+    "re_enter_password": "Re-enter new password",
+    "continue": "Continue"
+  },
+  "dialog": {
+    "success": "Success"
+  },
+  "suggestions": {
+    "sing_song": "Sing me a song",
+    "restaurants": "Restaurants nearby",
+    "play_game": "Play a game",
+    "sports_news": "Sports news",
+    "random_fun": "Random fun",
+    "weather": "Today's Weather"
   }
 }

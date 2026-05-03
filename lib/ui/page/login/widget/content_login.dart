@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speech_to_text/core/constants/app_colors.dart';
@@ -33,7 +34,7 @@ class _ContentLoginState extends State<ContentLogin> {
 
   Future<void> onLogin() async {
     if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
-      ToastMessage.show(context, NotificationType.error, 'Invalid username or password');
+      ToastMessage.show(context, NotificationType.error, 'login.invalid_credentials'.tr());
       return;
     }
 
@@ -46,7 +47,7 @@ class _ContentLoginState extends State<ContentLogin> {
       }
     } else {
       if (context.mounted) {
-        ToastMessage.show(context, NotificationType.error, 'Đăng nhập thất bại. Vui lòng thử lại.');
+        ToastMessage.show(context, NotificationType.error, 'login.login_failed'.tr());
       }
     }
   }
@@ -72,7 +73,7 @@ class _ContentLoginState extends State<ContentLogin> {
                 style: AppTextStyles.text_16,
                 controller: usernameController,
                 decoration: InputDecoration(
-                  hintText: 'User name',
+                  hintText: 'login.username'.tr(),
                   hintStyle: AppTextStyles.hintText,
                   prefixIcon: const Icon(Icons.person_outline, color: AppColors.hintText),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
@@ -83,7 +84,7 @@ class _ContentLoginState extends State<ContentLogin> {
                 obscureText: true,
                 controller: passwordController,
                 decoration: InputDecoration(
-                  hintText: 'Password',
+                  hintText: 'login.password'.tr(),
                   hintStyle: AppTextStyles.hintText,
                   prefixIcon: const Icon(Icons.lock_open, color: AppColors.hintText),
                   border: OutlineInputBorder(
@@ -94,7 +95,7 @@ class _ContentLoginState extends State<ContentLogin> {
               Align(
                 alignment: AlignmentGeometry.centerRight,
                 child: TextButtonApp.normal(
-                  title: 'Forgot password?',
+                  title: 'login.forgot_password'.tr(),
                   onPressed: () => showModalBottomSheet(
                     context: context,
                     isScrollControlled: true,
@@ -106,7 +107,7 @@ class _ContentLoginState extends State<ContentLogin> {
                 ),
               ),
               TextButtonApp.primary(
-                title: 'Login',
+                title: 'login.login_button'.tr(),
                 height: 50,
                 width: double.infinity,
                 bgColor: AppColors.bgButton,
@@ -120,11 +121,11 @@ class _ContentLoginState extends State<ContentLogin> {
                 spacing: 10,
                 children: [
                   Text(
-                    "Don't Have An Account?",
+                    'login.no_account'.tr(),
                     style: AppTextStyles.text_14
                   ),
                   TextButtonApp.normal(
-                    title: 'Sign Up',
+                    title: 'login.sign_up'.tr(),
                     onPressed: () => context.pushNamed(RouteName.signUp),
                     textStyle: AppTextStyles.highlightText
                   )

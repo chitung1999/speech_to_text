@@ -25,7 +25,22 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  Language _currentLanguage = Language.en;
+  Language _currentLanguage = Language.vi;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadLanguage();
+  }
+
+  Future<void> _loadLanguage() async {
+    final prefs = getIt<SharedPreferencesApp>();
+    final lang = await prefs.getLanguage();
+    if (!mounted) return;
+    setState(() {
+      _currentLanguage = lang == 'en' ? Language.en : Language.vi;
+    });
+  }
 
   String _getStrLanguage(Language lang) {
     switch (lang) {
@@ -43,8 +58,10 @@ class _SettingPageState extends State<SettingPage> {
       builder: (context) {
         return SettingLanguage(
           currentLanguage: _currentLanguage,
-          onSelected: (value) {
+          onSelected: (value) async {
             setState(() {_currentLanguage = value;});
+            // Reload language từ SharedPreferences để đảm bảo đồng bộ
+            await _loadLanguage();
           }
         );
       }
@@ -66,7 +83,7 @@ class _SettingPageState extends State<SettingPage> {
     return BackgroundPage(
       child: Scaffold(
         backgroundColor: AppColors.transparent,
-        appBar: GoBack(title: 'Setting'),
+        appBar: GoBack(title: LocaleKeys.setting_title.tr()),
         body: Container(
           color: AppColors.bgContent,
           child: SafeArea(
@@ -95,14 +112,14 @@ class _SettingPageState extends State<SettingPage> {
                             value: _getStrLanguage(_currentLanguage),
                             onTap: _onSettingLanguage
                           ),
-                          ItemSetting(icon: Icons.lock_open, title: 'Password', onTap: _onSettingPassword),
-                          ItemSetting(icon: Icons.person, title: 'Information', onTap: () {}),
+                          ItemSetting(icon: Icons.lock_open, title: LocaleKeys.setting_password.tr(), onTap: _onSettingPassword),
+                          ItemSetting(icon: Icons.person, title: LocaleKeys.setting_information.tr(), onTap: () {}),
                         ],
                       ),
                     ),
                   ),
                   TextButtonApp.primary(
-                      title: 'Logout',
+                      title: LocaleKeys.setting_logout.tr(),
                       height: 50,
                       width: double.infinity,
                       bgColor: AppColors.bgButton,

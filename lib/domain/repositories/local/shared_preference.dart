@@ -25,7 +25,7 @@ class SharedPreferencesApp {
   Future<bool> setLanguage(String language) =>
       sharedPreferences.setString('language', language);
   Future<String> getLanguage() async =>
-      sharedPreferences.getString('language') ?? 'en';
+      sharedPreferences.getString('language') ?? 'vi';
 
   /// refer core/enums/language: 0-en, 1-vi
   Future<bool> setFullName(String fullName) =>

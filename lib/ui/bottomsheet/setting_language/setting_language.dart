@@ -27,15 +27,17 @@ class SettingLanguage extends StatelessWidget {
 
     Widget item (Language language) {
       return InkWell(
-        onTap: () {
+        onTap: () async {
           onSelected(language);
           String strLanguage = language == Language.en ? 'en' : 'vi';
-          context.setLocale(Locale(strLanguage));
-
+          
           final prefs = getIt<SharedPreferencesApp>();
-          prefs.setLanguage(strLanguage);
-
-          context.pop();
+          await prefs.setLanguage(strLanguage);
+          
+          if (context.mounted) {
+            context.setLocale(Locale(strLanguage));
+            context.pop();
+          }
         },
         splashColor: AppColors.transparent,
         highlightColor: AppColors.transparent,
@@ -63,8 +65,8 @@ class SettingLanguage extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         spacing: 20,
         children: [
-          const Text(
-            "Language",
+          Text(
+            LocaleKeys.setting_language.tr(),
             style: AppTextStyles.titleBottomSheet,
           ),
           SizedBox(),

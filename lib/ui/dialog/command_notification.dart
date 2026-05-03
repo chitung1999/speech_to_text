@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/core/constants/app_text_styles.dart';
 
@@ -19,7 +20,7 @@ class CommandNotification extends StatelessWidget {
             fit: BoxFit.contain,
           ),
           Text(
-            "Success",
+            'dialog.success'.tr(),
             style: AppTextStyles.text_16_700,
           ),
         ],
